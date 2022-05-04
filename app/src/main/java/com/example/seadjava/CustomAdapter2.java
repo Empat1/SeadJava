@@ -5,11 +5,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -31,6 +33,11 @@ public class CustomAdapter2 extends RecyclerView.Adapter<CustomAdapter2.ViewHold
         return new CustomAdapter2.ViewHolder(view, this);
     }
 
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        holder.textView.setText(date.get(position));
+    }
+
 
     @Override
     public int getItemCount() {
@@ -40,13 +47,14 @@ public class CustomAdapter2 extends RecyclerView.Adapter<CustomAdapter2.ViewHold
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        final CustomAdapter customAdapter;
+        final CustomAdapter2 customAdapter;
         final TextView textView;
+        final LinearLayout card;
 
-        ViewHolder(@NonNull View itemView , CustomAdapter pvAdapter) {
+        ViewHolder(@NonNull View itemView , CustomAdapter2 pvAdapter) {
             super(itemView);
             textView = itemView.findViewById(R.id.text);
-
+            card = itemView.findViewById(R.id.card);
             this.customAdapter = pvAdapter;
         }
     }
